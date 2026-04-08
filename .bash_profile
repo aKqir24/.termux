@@ -4,3 +4,4 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -f ~/.profile ]] && . ~/.profile
 [ -d "$HOME/adb-fastboot/platform-tools" ] && export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
+sh ~/.termux/boot/00-startup

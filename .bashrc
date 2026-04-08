@@ -19,10 +19,6 @@ shopt -s checkwinsize
 # ================================================== #
 #						Features					 #
 # ================================================== #
-
-# Initial startups
-clear ; fastfetch ; wal -n -q -i Pictures/Wallpapers
-
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -44,6 +40,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export LD_LIBRARY_PATH=$PWD/bin:$LD_LIBRARY_PATH
 export FZF_DEFAULT_OPTS="--height 40% --reverse"
 export FZF_DEFAULT_COMMAND="find . -type f"
+export TERMINFO=$PREFIX/share/terminfo
 export ZED_ALLOW_EMULATED_GPU=1
 export SQUASHFS_COMPRESSION=zstd
 export TERM=xterm-256color
@@ -64,6 +61,7 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto' 
 alias egrep='egrep --color=auto'
+alias clear="printf '\033[2J\033[H'"
 
 # ================================================= #
 #					  Inegration
