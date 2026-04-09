@@ -7,5 +7,5 @@ Kinda busy lately so I have to address this by coding in my phone. Though I cann
 ## Installation
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/aKqir24/.files/refs/heads/main/setup.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/aKqir24/.termux/refs/heads/main/setup.sh)"
 ```

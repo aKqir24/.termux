@@ -1,78 +1,238 @@
-clear ; echo "setup: Please be aware that this install script
-is made on a debian mahine, so it might not work on most 
-distros that are not based on debian!" ; sleep 2
+pkgs=(
+aspnetcore-runtime-10.0
+aspnetcore-targeting-pack-10.0
+attr
+bash
+brotli
+bzip2
+ca-certificates
+clang
+command-not-found
+coreutils
+curl
+dash
+debianutils
+dialog
+diffutils
+djvulibre
+dos2unix
+dotnet-apphost-pack-10.0
+dotnet-host-10.0
+dotnet-host
+dotnet-hostfxr-10.0
+dotnet-runtime-10.0
+dotnet-sdk-10.0
+dotnet-targeting-pack-10.0
+dotnet-templates-10.0
+dpkg
+ed
+fastfetch
+fftw
+findutils
+fontconfig-utils
+fontconfig
+freetype
+fribidi
+fzf
+gawk
+gdbm
+gdk-pixbuf
+ghostscript
+giflib
+git
+glib
+gnupg
+gpgme
+gpgv
+graphviz
+grep
+gzip
+harfbuzz
+imagemagick
+imath
+inetutils
+jbig2dec
+krb5
+ldns
+leptonica
+less
+libacl
+libandroid-execinfo
+libandroid-glob
+libandroid-posix-semaphore
+libandroid-selinux
+libandroid-shmem
+libandroid-support
+libandroid-utimes
+libaom
+libassuan
+libavif
+libbz2
+libc++
+libcairo
+libcap-ng
+libcompiler-rt
+libcrypt
+libcurl
+libdav1d
+libdb
+libde265
+libedit
+libevent
+libexpat
+libffi
+libgcrypt
+libgd
+libgmp
+libgnutls
+libgpg-error
+libgraphite
+libgts
+libheif
+libice
+libiconv
+libicu
+libidn2
+libidn
+libjasper
+libjpeg-turbo
+libjxl
+libksba
+libllvm
+liblqr
+libltdl
+liblz4
+liblzma
+liblzo
+libmd
+libmpfr
+libmsgpack
+libnettle
+libnghttp2
+libnghttp3
+libngtcp2
+libnpth
+libpixman
+libpng
+libraqm
+librav1e
+libraw
+libresolv-wrapper
+librsvg
+libsm
+libsmartcols
+libsqlite
+libssh2
+libtiff
+libtirpc
+libunbound
+libunibilium
+libunistring
+libuuid
+libuv
+libvterm
+libwebp
+libx11
+libx265
+libxau
+libxcb
+libxdmcp
+libxext
+libxft
+libxml2
+libxmu
+libxrender
+libxt
+libzip
+littlecms
+lld
+llvm
+lsof
+lua51-lpeg
+lua51
+luajit
+luv
+make
+ncurses-ui-libs
+ncurses-utils
+ncurses
+ndk-sysroot
+neovim-nightly
+net-tools
+openexr
+openjpeg
+openssh-sftp-server
+openssh
+openssl
+pango
+patch
+pcre2
+perl
+pinentry
+pkg-config
+procps
+psmisc
+python-ensurepip-wheels
+python-pip
+python
+readline
+resolv-conf
+root-repo
+sed
+starship
+stow
+svt-av1
+tar
+termux-am-socket
+termux-am
+termux-auth
+termux-core
+termux-exec
+termux-keyring
+termux-licenses
+termux-tools
+tree-sitter-bash
+tree-sitter-c
+tree-sitter-css
+tree-sitter-go
+tree-sitter-html
+tree-sitter-java
+tree-sitter-javascript
+tree-sitter-json
+tree-sitter-latex
+tree-sitter-lua
+tree-sitter-markdown
+tree-sitter-parsers
+tree-sitter-python
+tree-sitter-query
+tree-sitter-regex
+tree-sitter-rust
+tree-sitter-sql
+tree-sitter-toml
+tree-sitter-vim
+tree-sitter-vimdoc
+tree-sitter-xml
+tree-sitter-yaml
+tree-sitter
+ttf-dejavu
+unzip
+utf8proc
+util-linux
+wget2
+x11-repo
+xorg-xauth
+xxhash
+xz-utils
+zlib
+zstd)
 
-# setup dotfiles directory and other dir
-echo "setup: Preparing & applying dotfiles"
-git clone --recurse-submodules https://github.com/aKqir24/.files.git
-cd "$HOME/.files" && stow . --adopt 
-stow -d resources/global.config/ -t ~ --adopt vscodium && cd "$HOME"
+# Install packages
+pkg install "${pkgs[@]}"
+pip install pywal16
 
-# Setup thumbfast for mpv
-echo "Setting up Media..."
-wget -P "$HOME/.config/mpv/scripts/" \
-	https://raw.githubusercontent.com/po5/thumbfast/refs/heads/master/thumbfast.lua
-wget -P "$HOME/.config/mpv/script-opts/" \
-	https://raw.githubusercontent.com/po5/thumbfast/refs/heads/master/thumbfast.conf
-
-# Install all base packages
-echo "setup: installing system packages"
-su root -c "apt update ;\
-apt-get install picom i3-wm pipewire pipewire-pulse libssl-dev \
-				wireplumber dunst xinit pipx celluloid automake sudo \
-				alacritty viewnior libtool kdialog imagemagick xsettingsd 
-				nwg-look stow btop starship pcmanfm clang systemd-resolved \
-				iwd  preload git ark gettext fastfetch power-profiles-daemon \
-				fonts-noto-color-emoji libpulse-dev libsensors-dev libpipewire-0.3-dev \
-				libtool-bin autoconf libnotmuch-dev yq python3-gi python3-setuptools obexftp \
-				obexpushd default-jre gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
-                gstreamer1.0-plugins-bad gstreamer1.0-libav
-
-# setup systemd-networkd & services
-echo "setup: Configuring system"
-system_services=( systemd-networkd systemd-resolved
-				  power-profiles-daemon iwd )
-for service in ${system_service[@]}; do
-	systemctl enable --now $service
-done
-ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-cp $HOME/.files/resources/network/* /etc/systemd/network/
-systemctl --user enable --now obex
-systemctl --user enable --now pipewire.service pipewire.socket
-systemctl --user enable --now wireplumber.service
-systemctl --user enable --now pipewire-pulse.service"
-
-# pacstall package manager and its available package
-echo "setup: Installing pacstall & pacstall packages..."
-sudo $( bash -c "$(curl -fsSL https://raw.githubusercontent.com/aKqir24/pacstall/refs/heads/master/install.sh)" &&
-		pacstall -I gearlever-git zen-browser i3status-rust rofi-emoji bluetuith-bin lmms-git dust-bin neovim-git \
-		winetricks-git mcpelauncher-ui-git gscreenshot-git carla-git yabridge rofi colorz-git )
-
-# installing other packages
-echo "setup: Installing base packages"
-pipx install pywal16 --system-site-packages
-read -p "Do you want to setup wine?[Y/n]" wine_setup
-if [ ${wine_setup^^} = "Y" ] || [ -z $wine_setup ]; then
-	version=9.21 variant=staging
-	codename=$(shopt -s nullglob; awk '/^deb https:\/\/dl\.winehq\.org/ { print $3; exit 0 } END { exit 1 }' \
-		/etc/apt/sources.list /etc/apt/sources.list.d/*.list || awk '/^Suites:/ { print $2; exit }' \
-		/etc/apt/sources.list /etc/apt/sources.list.d/wine*.sources)
-	suffix=$(dpkg --compare-versions "$version" ge 6.1 && ((dpkg --compare-versions "$version" eq 6.17 && echo "-2") || echo "-1"))
-	sudo apt install --install-recommends {"winehq-$variant","wine-$variant","wine-$variant-amd64","wine-$variant-i386"}="$version~$codename$suffix"
-fi
-
-# Seup locale
-echo "setup: Setting up launguage"
-sudo $(dpkg-reconfigure locales)
-
-# Run theming/icon scripts
-echo "setup: theme & icons are loading..."
-bash $HOME/.files/resources/scripts/pywal16_scripts/walsetup.sh --gui --verbose
-bash $HOME/.files/resources/scripts/pywal16_scripts/waloml.sh --alacritty \
-	--dunst --i3status-rs=~/.files/.config/i3/status/config.toml
-bash $HOME/.files/resources/scripts/pywal16_scripts/theming/rofi.sh
-source $HOME/.cache/wal/colors-tty.sh
-
-# Finilaize by Turning on BFQ I/O
-echo "bfq" | sudo tee /sys/block/sda/queue/scheduler
-echo 'setup: Finished!!'
+# Setup environment
+cd ~/.termux
+stow . --adopt
+sh ~/.termux/boot/00-startup
+termux-repo-change
+termux-reload-settings
