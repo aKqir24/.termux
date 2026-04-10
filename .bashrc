@@ -37,13 +37,15 @@ fi
 #				Environment Variables				#
 # ================================================= #
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export CARGO_TARGET_DIR=$HOME/.cargo/build_files
 export LD_LIBRARY_PATH=$PWD/bin:$LD_LIBRARY_PATH
 export FZF_DEFAULT_OPTS="--height 40% --reverse"
 export FZF_DEFAULT_COMMAND="find . -type f"
 export TERMINFO=$PREFIX/share/terminfo
 export ZED_ALLOW_EMULATED_GPU=1
 export SQUASHFS_COMPRESSION=zstd
-export TERM=xterm-256color
+export OPENSSL_DIR=$PREFIX
+export TERM=xterm
 export GPG_TTY=$(tty)
 export WINEDEBUG=-all
 
@@ -72,3 +74,5 @@ eval "$(fzf --bash)"
 if [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then 
 	source /usr/share/doc/fzf/examples/key-bindings.bash
 fi
+
+source /data/data/com.termux/files/home/.config/broot/launcher/bash/br

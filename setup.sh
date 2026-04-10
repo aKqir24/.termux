@@ -3,6 +3,7 @@ aspnetcore-runtime-10.0
 aspnetcore-targeting-pack-10.0
 attr
 bash
+bash-completion
 brotli
 bzip2
 ca-certificates
@@ -123,6 +124,7 @@ libsm
 libsmartcols
 libsqlite
 libssh2
+libsixel
 libtiff
 libtirpc
 libunbound
@@ -178,7 +180,7 @@ python
 readline
 resolv-conf
 root-repo
-sed
+rust
 starship
 stow
 svt-av1
@@ -229,6 +231,7 @@ zstd)
 # Install packages
 pkg install "${pkgs[@]}"
 pip install pywal16
+cargo install --locked broot du-dust lemmeknow
 
 # Setup environment
 cd ~/.termux
