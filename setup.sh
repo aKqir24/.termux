@@ -238,4 +238,5 @@ cd ~/.termux
 stow . --adopt
 sh ~/.termux/boot/00-startup
 termux-repo-change
+termux-setup-storage
 termux-reload-settings
