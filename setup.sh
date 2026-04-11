@@ -231,7 +231,7 @@ zstd)
 
 # Install packages
 pkg install "${pkgs[@]}"
-pip install pywal16
+pip install pywal16 starlit-cli
 cargo install --locked broot du-dust lemmeknow
 
 # Setup environment
