@@ -43,9 +43,7 @@ export FZF_DEFAULT_OPTS="--height 40% --reverse"
 export FZF_DEFAULT_COMMAND="find . -type f"
 export TERMINFO=$PREFIX/share/terminfo
 export ZED_ALLOW_EMULATED_GPU=1
-export SQUASHFS_COMPRESSION=zstd
 export OPENSSL_DIR=$PREFIX
-export TERM=xterm
 export GPG_TTY=$(tty)
 export WINEDEBUG=-all
 
@@ -56,7 +54,6 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias iw='/sbin/iw'
-alias sudo='sudo -E'
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto' 
@@ -74,5 +71,3 @@ eval "$(fzf --bash)"
 if [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then 
 	source /usr/share/doc/fzf/examples/key-bindings.bash
 fi
-
-source /data/data/com.termux/files/home/.config/broot/launcher/bash/br

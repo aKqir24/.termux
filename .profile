@@ -1,13 +1,11 @@
-export WINEFSYNC=1
 export EDITOR=nvim
-export WINEARCH=wow64
 export LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANGUAGE=en_US:en
 export XCURSOR_SIZE=14
 export COLORTERM=truecolor
-export TERM=xterm-256-color
+export TERM=xterm-256color
 export LIBSEAT_BACKEND=seatd
 export QT_QPA_PLATFORMTHEME=gtk3
 export XDG_SESSION_DESKTOP=gnome

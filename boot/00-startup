@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/sh
-
-printf '\033[2J\033[H' 
-wal --cols16 -n -q -i Pictures/Wallpapers &>/dev/null
-fastfetch

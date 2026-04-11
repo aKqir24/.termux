@@ -1,10 +1,12 @@
 # ~/.bash_profile
 
+# Start message
+(sh ~/.termux/boot/01-startup-msg) & disown
+
 # Verify & start these programs
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -f ~/.profile ]] && . ~/.profile
-[ -d "$HOME/adb-fastboot/platform-tools" ] && export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
-sh ~/.termux/boot/00-startup
-sh "$PYWAL_CACHE_DIR/colors.sh"
 
+# initial setup priority
+sh ~/.termux/boot/00-pywal : STARTING=0
 source /data/data/com.termux/files/home/.config/broot/launcher/bash/br
