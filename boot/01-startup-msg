@@ -1,6 +1,10 @@
 #!/data/data/com.termux/files/usr/bin/sh
-
-for i in '' . .. ... '' . .. ...; do
-   printf '\033[2J\033[HLoading%s\n' "$i"
-   sleep 0.2
+while true; do
+	if pgrep -x 'wal'>/dev/null; then
+		printf '\033[2J\033[H%s' "Getting Colors..."
+	elif pgrep -x 'fastfetch '>/dev/null; then
+		break
+	else
+		printf '"\033[2J\033[H%s' "Loading Something..."
+	fi
 done
