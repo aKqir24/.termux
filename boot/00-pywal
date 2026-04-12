@@ -1,4 +1,4 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
-wal --cols16 -n -q -i Pictures/Wallpapers && \
-	sleep 1.45 && printf '\033[2J\033[H' && fastfetch
+wal --cols16 -n -q -i Pictures/Wallpapers
+clear ; sleep 0.5
